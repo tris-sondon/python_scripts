@@ -1,4 +1,4 @@
-python_scripts
+python scripts
 ==============
 
 Small everyday use scripts

@@ -1,38 +1,51 @@
 #!/usr/bin/env python
 
-###################################################################
-# Author: Tristana Sondon
-# Date: May 2014
-# Licence: MIT
-###################################################################
-
 """
-This script will rename files that are in the format:
+Script to rename files by replacing spaces with underscores,
+numbers to padded 2 zeros format, remove first two hiphens.
 
-   1 - 1 - Course Introduction (14_11).mp4
-   10 - 1 - What is Relation Extraction_ (9_47).mp4
-   10 - 2 - Using Patterns to Extract Relations (6_17).mp4
-   2 - 1 - Regular Expressions (11_25).mp4
-   2 - 2 - Regular Expressions in Practical NLP (6_04).mp4
+Example:
 
-to the following format:
+    This script will rename files that are in the format:
 
-    01_01_Course_Introduction_(14_11).mp4
-    02_01_Regular_Expressions_(11_25).mp4
-    02_02_Regular_Expressions_in_Practical_NLP_(6_04).mp4
-    10_01_What_is_Relation_Extraction__(9_47).mp4
-    10_02_Using_Patterns_to_Extract_Relations_(6_17).mp4
+       1 - 1 - Course Introduction (14_11).mp4
+       10 - 2 - Using Patterns to Extract Relations (6_17).mp4
+       11 - 1 - Week 3 - Part I.mp4
+       2 - 2 - Regular Expressions in Practical NLP (6_04).mp4
 
+    to the following format:
+
+       01_01_Course_Introduction_(14_11).mp4
+       02_02_Regular_Expressions_in_Practical_NLP_(6_04).mp4
+       10_02_Using_Patterns_to_Extract_Relations_(6_17).mp4
+       11_01_Week_3-Part_I.mp4
+
+Use:
+
+    - You need to be in the directory where your files are
+    - To filter which files to rename, modify the argument of the 
+      os.listdir() call.
+    - Can be easily integrated into a shell script to process 
+      multiple directories.
 """
 
 import os
 
-for filename in os.listdir("."): 
-    if filename.find(" ") > 0: 
+__author__ = "Tristana Sondon"
+__copyright__ = "Copyright 2014, Tristana Sondon"
+__license__ = "MIT"
+__version__ = "0.0.1"
+__email__ = "tristana.sondon@gmail.com"
+
+for filename in os.listdir("."):
+    if filename.find(" ") > 0:
         fsp = filename.split()
-        new_filename = ("".join(fsp[0].zfill(2) + "_" + fsp[2].zfill(2) + "_" +  
+        new_filename = ("".join(fsp[0].zfill(2) + "_" + fsp[2].zfill(2) + "_" +
                         "_".join(fsp[4:]))).replace("_-_","-")
-	try:
-        	os.rename(filename, new_filename)
-	except:
-		print "Exception: ",str(sys.exc_info())
+
+    try:
+        os.rename(filename, new_filename)
+    except:
+        print "Exception: ", str(sys.exc_info())
+
+

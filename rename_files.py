@@ -29,13 +29,14 @@ Use:
       multiple directories.
 """
 
-import os
-
 __author__ = "Tristana Sondon"
 __copyright__ = "Copyright 2014, Tristana Sondon"
 __license__ = "MIT"
 __version__ = "0.0.1"
 __email__ = "tristana.sondon@gmail.com"
+
+
+import os
 
 for filename in os.listdir("."):
     if filename.find(" ") > 0:

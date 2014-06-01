@@ -13,13 +13,17 @@ __email__ = "tristana.sondon@gmail.com"
 
 import os
 
-for filename in os.listdir("."):
-    if filename.find(" ") > 0:
-        new_filename = filename.replace(" ", "_")
+def spaces_to_underscores():
+    for filename in os.listdir("."):
+        if filename.find(" ") > 0:
+            new_filename = filename.replace(" ", "_")
 
-        try:
-            os.rename(filename, new_filename)
-        except:
-            print "Exception: ", str(sys.exc_info())
+            try:
+                os.rename(filename, new_filename)
+            except:
+                print "Exception: ", str(sys.exc_info())
+
+if __name__ == "__main__":
+    spaces_to_underscores()
 
 

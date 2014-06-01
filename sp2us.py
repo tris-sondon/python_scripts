@@ -12,9 +12,10 @@ __email__ = "tristana.sondon@gmail.com"
 
 
 import os
+import sys
 
-def spaces_to_underscores():
-    for filename in os.listdir("."):
+def spaces_to_underscores(filelist):
+    for filename in filelist:
         if filename.find(" ") > 0:
             new_filename = filename.replace(" ", "_")
 
@@ -23,7 +24,13 @@ def spaces_to_underscores():
             except:
                 print "Exception: ", str(sys.exc_info())
 
+
 if __name__ == "__main__":
-    spaces_to_underscores()
+    if len(sys.argv) > 1:
+        filelist = sys.argv[1:]
+    else:
+        filelist = os.listdir(".")
+
+    spaces_to_underscores(filelist)
 
 
